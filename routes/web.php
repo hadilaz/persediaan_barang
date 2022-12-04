@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KategoriBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/barang', BarangController::class);
+
+
+ //data kategori
+ Route::resource('/kategori', KategoriBarangController::class);
+ Route::post('/kategori/store', [KategoriBarangController::class, 'store']);
+ Route::post('/kategori/{id}/update', [KategoriBarangController::class, 'update']);
+ Route::get('/kategori/{id}/destroy', [KategoriBarangController::class, 'destroy']);
+
 
 
 
