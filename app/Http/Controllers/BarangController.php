@@ -16,7 +16,11 @@ class BarangController extends Controller
     public function index()
     {
        $barang = Barang::with('kategori')->latest()->simplepaginate(10);
-        return view('Barang/index', compact('barang'));
+
+       $kategori = Kategori::all();
+
+        return view('Barang/index', compact('barang', 'kategori'));
+
     }
 
     /**
@@ -37,7 +41,16 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Barang::create([
+            'nama_barang' => $request->nama_barang,
+            'kategori_id' => $request->kategori_id,
+            'harga' => $request->harga,
+            'stok' => $request->stok,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+
+        ]);
+        return redirect('/barang')->with('success', 'data berhasil di simpan');
     }
 
     /**
@@ -71,7 +84,17 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $barang = Barang::find($id);
+
+        $barang->nama_barang = $request->nama_barang;
+        $barang->kategori_id = $request->kategori_id;
+        $barang->harga       = $request->harga;
+        $barang->stok        = $request->stok;
+        $barang->updated_at  = date('Y-m-d H:i:s');
+
+        $barang->save();
+
+        return redirect('/barang')->with('success', 'data berhasil di simpan');
     }
 
     /**
@@ -82,6 +105,8 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $barang = Barang::find($id);
+        $barang->delete();
+        return redirect('/barang')->with('success', 'data berhasil dihapus');
     }
 }

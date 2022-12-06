@@ -17,7 +17,7 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">Data Barang</h4>
-                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#modalAddbarang">
+                    <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#modalAddBarang">
                         <i class="fa fa-plus"></i>
                         Add Barang
                     </button>
@@ -44,12 +44,12 @@
                             <tr>
                                 <td>{{ $no++}}</td>
                                 <td>{{ $row->nama_barang}}</td>
-                                <td>{{ $row->kategoris_id}}</td>
+                                <td>{{ $row->kategori->nama_kategori}}</td>
                                 <td>Rp. {{ number_format($row->harga) }}</td>
                                 <td>{{ $row->stok}} Unit</td>
                                 <td>
-                                    <a href="#modalEditbarang{{$row->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
-                                    <a href="#modalHapusbarang{{$row->id}}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Hapus</a>
+                                    <a href="#modalEditBarang{{$row->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
+                                    <a href="#modalHapusBarang{{$row->id}}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Hapus</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -60,6 +60,174 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalAddBarang" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">add kategori</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data" action="/barang/store">
+
+                @csrf
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input type="text" class="form-control"  name="nama_barang" placeholder="...." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select class="form-control"  name="kategori_id" required>
+                            <option value="..." hidden="">.....pilih Kategori...</option>
+                            @foreach ($kategori as $p )
+                            <option value="{{ $p->id }}">{{ $p->nama_kategori }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addonl">Rp</span>
+                            </div>
+
+                            <input type="number" class="form-control" placeholder="Harga ..." name="harga" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+
+                            <input type="number" class="form-control" placeholder="stok....." name="stok" required>
+
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">Unit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-undo"></i>Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
+                </div>
+
+            </form>
+
+            </div>
+        </div>
+    </div>
+
+    @foreach ($barang as $d )
+
+    <div class="modal fade" id="modalEditBarang{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">edit Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" enctype="multipart/form-data" action="/barang/{{ $d->id }}/update">
+                @csrf
+
+                <div class="modal-body">
+                    <input type="hidden" value="{{ $d->id }}" name="id" required>
+
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <input type="text" value="{{ $d->nama_barang }}" class="form-control"  name="nama_barang" placeholder="...." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select class="form-control"  name="kategori_id" required>
+                            <option value="{{ $d->kategori_id }}">{{ $d->nama_kategori}}</option>
+                            @foreach ($kategori as $p )
+                            <option value="{{ $p->id }}">{{ $p->nama_kategori }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addonl">Rp</span>
+                            </div>
+
+                            <input type="number" value="{{ $d->harga }}" class="form-control" placeholder="Harga ..." name="harga" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+
+                            <input type="number" value="{{ $d->stok }}" class="form-control" placeholder="stok....." name="stok" required>
+
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">Unit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-undo"></i>Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
+                </div>
+
+            </form>
+
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
+    @foreach ($barang as $g )
+
+    <div class="modal fade" id="modalHapusBarang{{ $g->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Hapus Barang</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="GET" enctype="multipart/form-data" action="/barang/{{ $d->id }}/destroy">
+                @csrf
+
+                <div class="modal-body">
+                    <input type="hidden" value="{{ $d->id }}" name="id" required>
+
+                    <div class="form-group">
+                        <h4>Apakah anda yakin ingin menghapus data ini </h4>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-undo"></i>Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>Hapus</button>
+                </div>
+
+            </form>
+
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
 </main>
 
 @endsection

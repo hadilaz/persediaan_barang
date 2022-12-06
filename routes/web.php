@@ -26,7 +26,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/barang', BarangController::class);
 
 
  //data kategori
@@ -36,6 +35,11 @@ Route::resource('/barang', BarangController::class);
  Route::get('/kategori/{id}/destroy', [KategoriBarangController::class, 'destroy']);
 
 
+//data barang
+Route::resource('/barang', BarangController::class);
+Route::post('/barang/store', [BarangController::class, 'store']);
+Route::post('/barang/{id}/update', [BarangController::class, 'update']);
+Route::get('/barang/{id}/destroy', [BarangController::class, 'destroy']);
 
 
 
