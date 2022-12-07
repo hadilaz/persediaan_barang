@@ -32,14 +32,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
  Route::resource('/kategori', KategoriBarangController::class);
  Route::post('/kategori/store', [KategoriBarangController::class, 'store']);
  Route::post('/kategori/{id}/update', [KategoriBarangController::class, 'update']);
- Route::get('/kategori/{id}/destroy', [KategoriBarangController::class, 'destroy']);
+//  Route::get('/kategori/{id}/destroy', [KategoriBarangController::class, 'destroy']);
 
 
 //data barang
 Route::resource('/barang', BarangController::class);
 Route::post('/barang/store', [BarangController::class, 'store']);
 Route::post('/barang/{id}/update', [BarangController::class, 'update']);
-Route::get('/barang/{id}/destroy', [BarangController::class, 'destroy']);
+// Route::get('/barang/{id}/destroy', [BarangController::class, 'destroy']);
 
 
 

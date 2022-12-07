@@ -96,8 +96,10 @@ class kategoriBarangController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = kategori::find($id);
-        $kategori->delete();
+       // $kategori = kategori::find($id);
+       // $kategori -> delete();
+
+        kategori::whereId($id)->delete();
         return redirect('/kategori')->with('success', 'data berhasil di hapus');
     }
 }

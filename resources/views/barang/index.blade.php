@@ -47,9 +47,16 @@
                                 <td>{{ $row->kategori->nama_kategori}}</td>
                                 <td>Rp. {{ number_format($row->harga) }}</td>
                                 <td>{{ $row->stok}} Unit</td>
-                                <td>
-                                    <a href="#modalEditBarang{{$row->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
-                                    <a href="#modalHapusBarang{{$row->id}}" data-toggle="modal" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i>Hapus</a>
+                                <td width="20%">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                         <a href="#modalEditBarang{{$row->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
+                                         <form action="/barang/{{ $row->id }}" method="post">
+                                            @method('DELETE')
+                                              @csrf
+                                             <button type="submit" class="btn btn-danger btn-sm-xs"><i class="fas fa-trash"></i>
+                                            Hapus</button>
+                                    </form>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -193,7 +200,7 @@
 
     @endforeach
 
-    @foreach ($barang as $g )
+    {{-- @foreach ($barang as $g )
 
     <div class="modal fade" id="modalHapusBarang{{ $g->id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -226,7 +233,7 @@
         </div>
     </div>
 
-    @endforeach
+    @endforeach --}}
 
 </main>
 
