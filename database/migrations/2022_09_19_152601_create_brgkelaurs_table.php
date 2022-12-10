@@ -16,8 +16,8 @@ class CreateBrgkelaursTable extends Migration
         Schema::create('brgkelaurs', function (Blueprint $table) {
             $table->id();
             $table->string('no_brgkeluar');
-            $table->unsignedBigInteger('barangs_id');
-            $table->foreign('barangs_id')->references('id')->on('barangs')->onDelete('cascade');
+            $table->unsignedBigInteger('barang_id');
+            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('jumlah_brgkeluar')->nullable();

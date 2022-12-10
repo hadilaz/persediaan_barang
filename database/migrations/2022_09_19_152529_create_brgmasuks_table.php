@@ -16,8 +16,8 @@ class CreateBrgmasuksTable extends Migration
         Schema::create('brgmasuks', function (Blueprint $table) {
             $table->id();
             $table->string('no_brgmasuk');
-            $table->unsignedBigInteger('barangs_id');
-            $table->foreign('barangs_id')->references('id')->on('barangs')->onDelete('cascade');
+            $table->unsignedBigInteger('barang_id');
+            $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->integer('jumlah_brgmasuk')->nullable();
             $table->bigInteger('total')->nullable();
             $table->timestamps();
