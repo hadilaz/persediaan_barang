@@ -57,6 +57,12 @@ class BrgmasukController extends Controller
             'updated_at' => date('Y-m-d H:i:s'),
 
         ]);
+
+        $barang = Barang::find($request->barang_id);
+
+        $barang ->stok += $request->jumlah_brgmasuk;
+        $barang ->save();
+
         return redirect('/brgmasuk')->with('success', 'data berhasil di simpan');
     }
 

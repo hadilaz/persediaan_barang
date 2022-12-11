@@ -49,7 +49,7 @@
                                 <td>{{ $row->barang->nama_barang}}</td>
                                 <td>{{ $row->barang->kategori->nama_kategori}}</td>
                                 <td>Rp. {{ number_format($row->barang->harga) }}</td>
-                                <td>{{ $row->jumlah_brgmasuk}}</td>
+                                <td>{{ $row->jumlah_brgmasuk}} Unit</td>
                                 <td>Rp. {{ number_format($row->total) }}</td>
                                 <td width="20%">
                                     <div class="btn-group" role="group" aria-label="Basic example">
