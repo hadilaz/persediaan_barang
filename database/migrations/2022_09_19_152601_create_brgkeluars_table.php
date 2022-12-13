@@ -13,15 +13,15 @@ class CreateBrgkelaursTable extends Migration
      */
     public function up()
     {
-        Schema::create('brgkelaurs', function (Blueprint $table) {
+        Schema::create('brgkeluars', function (Blueprint $table) {
             $table->id();
             $table->string('no_brgkeluar');
             $table->unsignedBigInteger('barang_id');
             $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('date');
             $table->integer('jumlah_brgkeluar')->nullable();
-            $table->bigInteger('total')->nullable();
             $table->timestamps();
         });
     }

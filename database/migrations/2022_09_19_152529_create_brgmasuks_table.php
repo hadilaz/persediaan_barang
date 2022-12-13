@@ -18,8 +18,8 @@ class CreateBrgmasuksTable extends Migration
             $table->string('no_brgmasuk');
             $table->unsignedBigInteger('barang_id');
             $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
+            $table->string('date');
             $table->integer('jumlah_brgmasuk')->nullable();
-            $table->bigInteger('total')->nullable();
             $table->timestamps();
         });
     }

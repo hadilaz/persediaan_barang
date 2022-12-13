@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\barang;
+use App\Models\kategori;
+use App\Models\brgkeluar;
+use PDF;
 
 class BrgkeluarController extends Controller
 {
@@ -13,7 +17,11 @@ class BrgkeluarController extends Controller
      */
     public function index()
     {
-        //
+        $brgkeluar = Brgkeluar::with('barang')->latest()->simplepaginate(10);
+
+        $barang = Barang::all();
+
+         return view('barangkeluar/brg_keluar', compact('barang', 'brgkeluar'));
     }
 
     /**
@@ -23,7 +31,9 @@ class BrgkeluarController extends Controller
      */
     public function create()
     {
-        //
+        $barang = Barang::all();
+
+        return view('barangkeluar/add', compact('barang'));
     }
 
     /**
@@ -34,7 +44,36 @@ class BrgkeluarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $barang = Barang::find($request->barang_id);
+
+        if($barang->stok < $request->jumlah_brgkeluar)
+        {
+            return redirect('/brgkeluar/create')->with('warning', 'Jumlah Barang Melebihi Stok');
+
+        }
+        else{
+            brgkeluar::create([
+                'no_brgkeluar' => $request->no_brgkeluar,
+                'barang_id' => $request->barang_id,
+                'user_id' => $request->user_id,
+                'nama_barang' => $request->nama_barang,
+                'date' => $request->date,
+                'jumlah_brgkeluar' => $request->jumlah_brgkeluar,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+
+            ]);
+
+            $barang ->stok -= $request->jumlah_brgkeluar;
+            $barang ->save();
+
+            return redirect('/brgkeluar')->with('success', 'data berhasil di simpan');
+
+        }
+
+
     }
 
     /**
@@ -80,5 +119,14 @@ class BrgkeluarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function exportpdf()
+    {
+        $data = brgkeluar::all();
+
+        view()->share('data', $data);
+        $pdf = PDF::loadview('barangkeluar/databrgkeluar-pdf');
+        return $pdf->download('data_brgkeluar.pdf');
     }
 }

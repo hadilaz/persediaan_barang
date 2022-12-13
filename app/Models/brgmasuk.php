@@ -9,7 +9,7 @@ class brgmasuk extends Model
 {
     use HasFactory;
     protected $table = 'brgmasuks';
-    protected $fillable = ['no_brgmasuk','barang_id','jumlah_brgmasuk','total'];
+    protected $fillable = ['no_brgmasuk','barang_id','date','jumlah_brgmasuk'];
 
     public function barang()
     {

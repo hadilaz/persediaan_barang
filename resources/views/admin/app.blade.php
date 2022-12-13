@@ -34,7 +34,16 @@
                         <a class="dropdown-item" href="#">Settings</a>
                         <a class="dropdown-item" href="#">Activity Log</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        {{-- <a class="dropdown-item" href="{{ route('logout') }}">Logout</a> --}}
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                              {{ __('Logout') }}
+                         </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
                     </div>
                 </li>
             </ul>
@@ -50,6 +59,7 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
+                            @role('Admin')
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Managemen Users
@@ -61,6 +71,7 @@
                                     <a class="nav-link" href="/roles">Roles</a>
                                 </nav>
                             </div>
+                            @endrole
                             <a class="nav-link" href="/barang">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Barang
@@ -74,7 +85,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Barang Masuk
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/brgkeluar">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Barang Keluar
                             </a>

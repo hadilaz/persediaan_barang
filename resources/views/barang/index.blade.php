@@ -21,6 +21,7 @@
                         <i class="fa fa-plus"></i>
                         Add Barang
                     </button>
+                    <a href="/exportpdf" class="btn btn-info btn"><i class="fas fa-plus"></i> Export pdf</a>
                 </div>
             </div>
 
@@ -49,6 +50,7 @@
                                 <td>{{ $row->stok}} Unit</td>
                                 <td width="20%">
                                     <div class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-info btn-xs" href="/barang/show">Detail</a>
                                          <a href="#modalEditBarang{{$row->id}}" data-toggle="modal" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>Edit</a>
                                          <form action="/barang/{{ $row->id }}" method="post">
                                             @method('DELETE')
@@ -72,7 +74,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">add kategori</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -92,11 +94,16 @@
                     <div class="form-group">
                         <label>Kategori</label>
                         <select class="form-control"  name="kategori_id" required>
-                            <option value="..." hidden="">.....pilih Kategori...</option>
+                            <option value="..." hidden="">.....</option>
                             @foreach ($kategori as $p )
                             <option value="{{ $p->id }}">{{ $p->nama_kategori }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Detail</label>
+                        <input type="text" class="form-control"  name="detail" placeholder="...." required>
                     </div>
 
                     <div class="form-group">
@@ -106,14 +113,14 @@
                                 <span class="input-group-text" id="basic-addonl">Rp</span>
                             </div>
 
-                            <input type="number" class="form-control" placeholder="Harga ..." name="harga" required>
+                            <input type="number" class="form-control" placeholder="..." name="harga" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-group mb-3">
 
-                            <input type="number" class="form-control" placeholder="stok....." name="stok" required>
+                            <input type="number" class="form-control" placeholder="....." name="stok" required>
 
                             <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2">Unit</span>
@@ -162,6 +169,11 @@
                             <option value="{{ $p->id }}">{{ $p->nama_kategori }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Detail</label>
+                        <input type="text" value="{{ $d->detail }}" class="form-control"  name="detail" placeholder="...." required>
                     </div>
 
                     <div class="form-group">

@@ -67,7 +67,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">add kategori</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -81,7 +81,7 @@
 
                     <div class="form-group">
                         <label>Nama Kategori</label>
-                        <input type="text" class="form-control"  name="nama_kategori" placeholder="nama kategori ....." required>
+                        <input type="text" class="form-control"  name="nama_kategori" placeholder=".......Nama Kategori ....." required>
                     </div>
 
                 </div>
@@ -115,7 +115,7 @@
 
                     <div class="form-group">
                         <label>nama Kategori</label>
-                        <input type="text" value="{{ $d->nama_kategori }}" class="form-control" name="nama_kategori" placeholder="nama kategori ....." required>
+                        <input type="text" value="{{ $d->nama_kategori }}" class="form-control" name="nama_kategori" placeholder=".......Nama Kategori ....." required>
                     </div>
 
                 </div>

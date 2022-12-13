@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\barang;
 use App\models\kategori;
+use PDF;
 
 class BarangController extends Controller
 {
@@ -46,6 +47,7 @@ class BarangController extends Controller
             'kategori_id' => $request->kategori_id,
             'harga' => $request->harga,
             'stok' => $request->stok,
+            'detail' => $request->detail,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
 
@@ -59,9 +61,12 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $barang = barang::all();
+
+        return view('Barang/show', compact('barang'));
+
     }
 
     /**
@@ -110,5 +115,14 @@ class BarangController extends Controller
 
         Barang::whereId($id)->delete();
         return redirect('/barang')->with('success', 'data berhasil dihapus');
+    }
+
+    public function exportpdf()
+    {
+        $data = Barang::all();
+
+        view()->share('data', $data);
+        $pdf = PDF::loadview('barang/databarang-pdf');
+        return $pdf->download('data.pdf');
     }
 }

@@ -3,23 +3,25 @@
 @section('content')
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Tambah barang masuk</h1>
+    <h1 class="h3 mb-4 text-gray-800">Tambah barang keluar</h1>
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
-    <form method="POST" enctype="multipart/form-data" action="/brgmasuk/store">
+    <form method="POST" enctype="multipart/form-data" action="/brgkeluar/store">
         @csrf
 
     <div class="card-body">
 
+        <input type="hidden" value="{{ Auth::user()->id }}"  name="user_id" required>
+
         <div class="form-group">
             <label>No Barang Masuk</label>
-            <input type="text" class="form-control" placeholder="........No barang masuk....." name="no_brgmasuk" required>
+            <input type="text" class="form-control" placeholder=".....No barang masuk....." name="no_brgkeluar" required>
 
         </div>
         <div class="form-group">
             <label>Nama Barang</label>
             <select class="form-control" name="barang_id" id="barang_id" required>
-                <option value="" hidden="">......pilih barang.......</option>
+                <option value="" hidden="">.......pilih barang.......</option>
 
                 @foreach ($barang as $d )
                     <option value="{{ $d->id }}">{{ $d->nama_barang }}</option>
@@ -50,7 +52,7 @@
             <label>Jumlah Barang</label>
             <div class="input-group mb-3">
 
-            <input type="number" class="form-control" placeholder="......Jumlah barang....." id="jumlah_brgmasuk" name="jumlah_brgmasuk" required>
+            <input type="number" class="form-control" placeholder="........Jumlah barang....." id="jumlah_brgkeluar" name="jumlah_brgkeluar" required>
 
                 <div class="input-group-append">
                     <span class="input-group-text" id="basic-addon2">Unit</span>
@@ -60,16 +62,17 @@
 
 
         <button type="submit" class="btn btn-primary btn-sm">Tambah</button>
-        <a href="/brgmasuk" class="btn btn-secondary btn-sm">Kembali</a>
+        <a href="/brgkeluar" class="btn btn-secondary btn-sm">Kembali</a>
          </form>
     </div>
 
 
 
 
+
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script> --}}
 
 
     {{-- <script type="text/javascript">

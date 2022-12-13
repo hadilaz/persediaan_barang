@@ -6,14 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\barang;
 use App\Models\kategori;
 use App\Models\brgmasuk;
+use PDF;
 
 class BrgmasukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $brgmasuk = Brgmasuk::with('barang')->latest()->simplepaginate(10);
@@ -31,13 +28,14 @@ class BrgmasukController extends Controller
         return view('barangmasuk/add', compact('barang'));
     }
 
-    public function ajax(Request $request)
-    {
-        $barang_id['barang_id'] = $request->barang_id;
-        $ajax_barang            = Barang::where('id', $barang_id)->get();
+    // public function ajax(Request $request)
+    // {
 
-        return view('barangmasuk/ajax', compact('ajax_barang'));
-    }
+    //     $barang_id['barang_id'] = $request->barang_id;
+    //     $ajax_barang            = Barang::where('id', $barang_id)->get();
+
+    //     return view('barangmasuk/ajax', compact('ajax_barang'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -51,8 +49,8 @@ class BrgmasukController extends Controller
             'no_brgmasuk' => $request->no_brgmasuk,
             'barang_id' => $request->barang_id,
             'nama_barang' => $request->nama_barang,
+            'date' => $request->date,
             'jumlah_brgmasuk' => $request->jumlah_brgmasuk,
-            'total' => $request->total,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
 
@@ -109,5 +107,13 @@ class BrgmasukController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function exportpdf()
+    {
+        $data = brgmasuk::all();
+
+        view()->share('data', $data);
+        $pdf = PDF::loadview('barangmasuk/databrgmasuk-pdf');
+        return $pdf->download('data_brgmasuk.pdf');
     }
 }

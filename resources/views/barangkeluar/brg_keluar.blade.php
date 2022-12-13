@@ -6,7 +6,7 @@
         <h1 class="mt-4">Tables</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-            <li class="breadcrumb-item active">Barang Masuk</li>
+            <li class="breadcrumb-item active">Barang keluar</li>
         </ol>
         <div class="card mb-4">
             <div class="card-body">
@@ -17,11 +17,11 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">Data Barang Masuk</h4>
-                    <a class="btn btn-primary btn-round ml-auto" href="/brgmasuk/create">
+                    <a class="btn btn-primary btn-round ml-auto" href="/brgkeluar/create">
                         <i class="fa fa-plus"></i>
                         Add Barang masuk
                     </a>
-                    <a href="/exportpdfmasuk" class="btn btn-info btn"><i class="fas fa-plus"></i> Export pdf</a>
+                    <a href="/exportpdfkeluar" class="btn btn-info btn"><i class="fas fa-plus"></i> Export pdf</a>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>No Barang masuk</th>
+                                <th>No Barang keluar</th>
                                 <th>Nama barang</th>
                                 <th>Kategori</th>
                                 <th>Tanggal</th>
@@ -41,15 +41,16 @@
                         </thead>
                         <tbody>
                             @php $no=1; @endphp
-                            @foreach ($brgmasuk as $row)
+                            @foreach ($brgkeluar as $row)
+
                             <tr>
                                 <td>{{ $no++}}</td>
-                                <td>{{ $row->no_brgmasuk}}</td>
+                                <td>{{ $row->no_brgkeluar}}</td>
                                 <td>{{ $row->barang->nama_barang}}</td>
                                 <td>{{ $row->barang->kategori->nama_kategori}}</td>
                                 <td>{{ $row->date}}</td>
                                 <td>Rp. {{ number_format($row->barang->harga) }}</td>
-                                <td>{{ $row->jumlah_brgmasuk}} Unit</td>
+                                <td>{{ $row->jumlah_brgkeluar}} Unit</td>
                             </tr>
                             @endforeach
 

@@ -9,7 +9,7 @@ class barang extends Model
 {
     use HasFactory;
     protected $table = 'barangs';
-    protected $fillable = ['nama_barang','kategori_id','harga','stok'];
+    protected $fillable = ['nama_barang','kategori_id','harga','stok','detail'];
 
 
     public function kategori()
@@ -19,7 +19,12 @@ class barang extends Model
 
     public function brgmasuk()
     {
-        return $this->hasOne(brgmasuk::class);
+        return $this->hasmany(brgmasuk::class);
+    }
+
+    public function brgkeluar()
+    {
+        return $this->hasmany(brgkeluar::class);
     }
 
 
