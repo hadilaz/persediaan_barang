@@ -15,7 +15,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="#">Persedian Barang</a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -58,7 +58,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <div class="sb-sidenav-menu-heading">Menu</div>
                             @role('Admin')
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -80,7 +80,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Kategori Barang
                             </a>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" href="/supplier">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Supplier
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Transaction</div>
                             <a class="nav-link" href="/brgmasuk">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Barang Masuk

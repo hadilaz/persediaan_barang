@@ -36,6 +36,7 @@
     <th>Nama Barang</th>
     <th>Kategori</th>
     <th>Harga</th>
+    <th>Merek</th>
     <th>Stok</th>
   </tr>
   @php
@@ -47,10 +48,10 @@
     <td>{{ $row->nama_barang}}</td>
     <td>{{ $row->kategori->nama_kategori}}</td>
     <td>Rp. {{ number_format($row->harga) }}</td>
+    <td>{{ $row->merek}}</td>
     <td>{{ $row->stok}} Unit</td>
   </tr>
-
-@endforeach
+  @endforeach
 
 </table>
 

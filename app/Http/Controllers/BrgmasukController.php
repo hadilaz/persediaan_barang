@@ -7,6 +7,7 @@ use App\Models\barang;
 use App\Models\kategori;
 use App\Models\brgmasuk;
 use PDF;
+use DB;
 
 class BrgmasukController extends Controller
 {
@@ -25,7 +26,24 @@ class BrgmasukController extends Controller
     {
         $barang = Barang::all();
 
-        return view('barangmasuk/add', compact('barang'));
+        $q = DB::table('brgmasuks')->select(DB::raw('MAX(RIGHT(no_brgmasuk,3)) as kode'));
+        $kd="";
+        if($q->count()>0)
+        {
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        }
+        else
+        {
+                $kd = "001";
+        }
+
+            // return "NBM-".$kd;
+
+        return view('barangmasuk/add', compact('barang','kd'));
     }
 
     // public function ajax(Request $request)

@@ -53,8 +53,11 @@
     <td>Rp. {{ number_format($row->barang->harga) }}</td>
     <td>{{ $row->jumlah_brgmasuk}} Unit</td>
   </tr>
-
 @endforeach
+<tr>
+    <td colspan="6">Total</td>
+    <td></td>
+  </tr>
 
 </table>
 

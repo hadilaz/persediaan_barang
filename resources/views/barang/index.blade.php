@@ -33,7 +33,8 @@
                                 <th>No</th>
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
-                                <th>Harga</th>
+                                <th>Harga Unit</th>
+                                <th>Merek</th>
                                 <th>Stok</th>
                                 <th>Aksi</th>
                             </tr>
@@ -47,6 +48,7 @@
                                 <td>{{ $row->nama_barang}}</td>
                                 <td>{{ $row->kategori->nama_kategori}}</td>
                                 <td>Rp. {{ number_format($row->harga) }}</td>
+                                <td>{{ $row->merek}}</td>
                                 <td>{{ $row->stok}} Unit</td>
                                 <td width="20%">
                                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -107,6 +109,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Merek</label>
+                        <input type="text" class="form-control"  name="merek" placeholder="...." required>
+                    </div>
+
+                    <div class="form-group">
                         <label>Harga</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -116,6 +123,7 @@
                             <input type="number" class="form-control" placeholder="..." name="harga" required>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <div class="input-group mb-3">
@@ -174,6 +182,11 @@
                     <div class="form-group">
                         <label>Detail</label>
                         <input type="text" value="{{ $d->detail }}" class="form-control"  name="detail" placeholder="...." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Merek</label>
+                        <input type="text" value="{{ $d->merek }}" class="form-control"  name="merek" placeholder="...." required>
                     </div>
 
                     <div class="form-group">

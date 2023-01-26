@@ -35,7 +35,7 @@
                                 <th>Nama barang</th>
                                 <th>Kategori</th>
                                 <th>Tanggal</th>
-                                <th>Harga</th>
+                                <th>Harga Unit</th>
                                 <th>Jumlah</th>
                             </tr>
                         </thead>

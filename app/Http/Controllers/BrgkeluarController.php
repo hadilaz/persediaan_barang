@@ -7,6 +7,7 @@ use App\Models\barang;
 use App\Models\kategori;
 use App\Models\brgkeluar;
 use PDF;
+use DB;
 
 class BrgkeluarController extends Controller
 {
@@ -33,7 +34,23 @@ class BrgkeluarController extends Controller
     {
         $barang = Barang::all();
 
-        return view('barangkeluar/add', compact('barang'));
+        $q = DB::table('brgkeluars')->select(DB::raw('MAX(RIGHT(no_brgkeluar,3)) as kode'));
+        $kd="";
+        if($q->count()>0)
+        {
+            foreach($q->get() as $k)
+            {
+                $tmp = ((int)$k->kode)+1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        }
+        else
+        {
+                $kd = "001";
+        }
+          // return "NBk-".$kd;
+
+        return view('barangkeluar/add', compact('barang','kd'));
     }
 
     /**

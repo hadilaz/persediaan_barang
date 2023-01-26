@@ -15,7 +15,7 @@
 
         <div class="form-group">
             <label>No Barang Masuk</label>
-            <input type="text" class="form-control" placeholder=".....No barang masuk....." name="no_brgkeluar" required>
+            <input type="text" class="form-control" readonly="" value="{{ 'NBk-'.$kd }}" placeholder=".....No barang masuk....." name="no_brgkeluar" required>
 
         </div>
         <div class="form-group">

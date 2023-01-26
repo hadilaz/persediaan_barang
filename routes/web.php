@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BrgmasukController;
 use App\Http\Controllers\BrgkeluarController;
 use App\Http\Controllers\KategoriBarangController;
@@ -57,6 +58,12 @@ Route::resource('/brgkeluar', BrgkeluarController::class);
 Route::post('/brgkeluar/store', [BrgkeluarController::class, 'store']);
 Route::get('/brgkeluar/create', [BrgkeluarController::class, 'create']);
 Route::get('/exportpdfkeluar', [BrgkeluarController::class, 'exportpdf'])->name('exportpdf');
+
+//data supplier
+Route::resource('/supplier', SupplierController::class);
+Route::post('/supplier/store', [SupplierController::class, 'store']);
+Route::post('/supplier/{id}/update', [SupplierController::class, 'update']);
+
 
 
 Route::group(['middleware' => ['role:Admin']], function () {

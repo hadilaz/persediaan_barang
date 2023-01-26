@@ -16,10 +16,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Data Barang Masuk</h4>
+                    <h4 class="card-title">Data Barang Keluar</h4>
                     <a class="btn btn-primary btn-round ml-auto" href="/brgkeluar/create">
                         <i class="fa fa-plus"></i>
-                        Add Barang masuk
+                        Add Barang Keluar
                     </a>
                     <a href="/exportpdfkeluar" class="btn btn-info btn"><i class="fas fa-plus"></i> Export pdf</a>
                 </div>
@@ -35,7 +35,7 @@
                                 <th>Nama barang</th>
                                 <th>Kategori</th>
                                 <th>Tanggal</th>
-                                <th>Harga</th>
+                                <th>Harga Unit</th>
                                 <th>Jumlah</th>
                             </tr>
                         </thead>
